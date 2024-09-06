@@ -25,7 +25,7 @@ public class Bsta {
         miArbol.insertar(2);
         miArbol.insertar(6);
         miArbol.insertar(5);
-        miArbol.insertar(10);
+        miArbol.insertar(100);
         miArbol.insertar(11);
         miArbol.insertar(14);
         
@@ -35,7 +35,7 @@ public class Bsta {
         
         miArbol.preorden();
         
-        //miArbol.drawGraphviz();
+        miArbol.drawGraphviz();
     }
     
 }

@@ -104,7 +104,7 @@ public class Arbol {
             createFile("Bsta.dot",graphviz());
 
             ProcessBuilder pb;
-            pb = new ProcessBuilder("/usr/bin/dot","-Tpng","-o","Bsta.png","Bsta.dot");
+            pb = new ProcessBuilder("dot","-Tpng","-o","Bsta.png","Bsta.dot");
 
             pb.redirectErrorStream(true);
             pb.start();
