@@ -61,6 +61,7 @@ public class Editor extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jEditorPane1.setEditable(false);
+        jEditorPane1.setFont(new java.awt.Font("sansserif", 0, 8)); // NOI18N
         jScrollPane2.setViewportView(jEditorPane1);
 
         jButton1.setText("Analizar");
