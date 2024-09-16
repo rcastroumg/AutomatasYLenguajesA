@@ -18,7 +18,7 @@ public class Editor extends javax.swing.JFrame {
     public Editor() {
         initComponents();
         this.setLocationRelativeTo(null);
-        jTextArea1.setText("var a1 = 2;\n" +
+        String texto1 = "var a1 = 2;\n" +
 "var a2 = 5 + 3;\n" +
 "\n" +
 "if(a1<a2){\n" +
@@ -26,7 +26,16 @@ public class Editor extends javax.swing.JFrame {
 "}\n" +
 "else{\n" +
 "\ta2 = a1+a2;\n" +
-"}\n");
+"}\n";
+        String texto2 = "Dim a1 As Entero = 2\n" +
+"Dim a2 As Entero = 5 + 3\n" +
+"\n" +
+"Si a1<a2 Entonces\n" +
+"\ta1 = a1+a2\n" +
+"Sino\n" +
+"\ta2 = a1+a2\n" +
+"FinSi\n";
+        jTextArea1.setText(texto2);
         
     }
 
@@ -123,7 +132,7 @@ public class Editor extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AnalisisLexico analizador= new AnalisisLexico();
+        AnalisisLexico_v2 analizador= new AnalisisLexico_v2();
         String resultado = analizador.anlizar(jTextArea1.getText()+"\n");
         jEditorPane1.setContentType("text/html");
         jEditorPane1.setText(resultado);
