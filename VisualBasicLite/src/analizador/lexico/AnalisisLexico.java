@@ -37,9 +37,17 @@ public class AnalisisLexico {
             columna++;
             validarCaracteres = false;
             
-            DynamicStates fstate = findState(String.valueOf(estado),String.valueOf(letra),true);
-            if(fstate != null && estado != "A"){
-                if(fstate.haciaEstado == "A"){
+            DynamicStates fstateLetter;
+            DynamicStates fstateA;
+            if(isNumeric(estado)){
+                fstateLetter = findStateByLetter(estado,String.valueOf(letra));
+                fstateA = findStateByStateEnd(estado,"A");
+                if(fstateLetter != null){
+                    estado = fstateLetter.haciaEstado;
+                    s.lexema += String.valueOf(letra);
+                    continue;
+                }
+                else if(fstateA != null){
                     if(letra == ' '){
                         estado = "A";
                         s.token = s.lexema;
@@ -103,12 +111,8 @@ public class AnalisisLexico {
                     }
                     continue;
                 }
-                else{
-                    if(String.valueOf(letra).equals(fstate.letra)){
-                        estado = fstate.haciaEstado;
-                        s.lexema += String.valueOf(letra);
-                    }
-                    else if(letra == ' '){
+                else {
+                    if(letra == ' '){
                         estado = "A";
                         codigoHtml += saveLexico(s,"identificador");
                         s = new Simbolo();
@@ -158,8 +162,9 @@ public class AnalisisLexico {
                         }
                     }
                     continue;
-                }    
+                }
             }
+            
             
             switch (estado) {
                 case "A":
@@ -200,9 +205,9 @@ public class AnalisisLexico {
                         default:
                             validarCaracteres = true;
                     }
-                    fstate = findState(String.valueOf(estado),String.valueOf(letra),false);
-                    if(fstate != null){
-                        estado = fstate.haciaEstado;
+                    fstateLetter = findStateByLetter(String.valueOf(estado),String.valueOf(letra));
+                    if(fstateLetter != null){
+                        estado = fstateLetter.haciaEstado;
                         s.lexema = String.valueOf(letra);
                         s.columna = columna;
                         s.linea = linea;
@@ -962,30 +967,34 @@ public class AnalisisLexico {
         return html;
     }
     
-    private DynamicStates findState(String _state, String _letter, boolean _onlyState){
+    private DynamicStates findStateByLetter(String _state, String _letter){
         DynamicStates find;
-        if(_onlyState){
-            find = estadosGenerados.stream()
-            .filter(estado -> {
-                if(_state.equals(estado.estadoActual)){
-                    return true;
-                }
-                return false;
-            })
-            .findAny()
-            .orElse(null);
-        }
-        else {
-            find = estadosGenerados.stream()
-            .filter(estado -> {
-                if(_letter.equals(estado.letra) && _state.equals(estado.estadoActual)){
-                    return true;
-                }
-                return false;
-            })
-            .findAny()
-            .orElse(null);
-        }
+        
+        find = estadosGenerados.stream()
+        .filter(estado -> {
+            if(_letter.equals(estado.letra) && _state.equals(estado.estadoActual)){
+                return true;
+            }
+            return false;
+        })
+        .findAny()
+        .orElse(null);
+        
+        return find;
+    }
+    
+    private DynamicStates findStateByStateEnd(String _state, String _stateEnd){
+        DynamicStates find;
+        
+        find = estadosGenerados.stream()
+        .filter(estado -> {
+            if(_stateEnd.equals(estado.haciaEstado) && _state.equals(estado.estadoActual)){
+                return true;
+            }
+            return false;
+        })
+        .findAny()
+        .orElse(null);
         
         return find;
     }
@@ -1047,6 +1056,7 @@ public class AnalisisLexico {
         List<String> words = new ArrayList<String>();
         
         words.add("As");
+        //words.add("Asies");
         words.add("Cadena");
         words.add("Caso");
         words.add("CasoElse");
@@ -1073,6 +1083,17 @@ public class AnalisisLexico {
         
         
         return words;
+    }
+    
+    public static boolean isNumeric(String cadena) {
+        boolean resultado;
+        try{
+            Integer.parseInt(cadena);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+        return resultado;
     }
 
 }
