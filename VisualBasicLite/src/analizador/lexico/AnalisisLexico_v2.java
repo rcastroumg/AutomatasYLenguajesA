@@ -163,6 +163,8 @@ public class AnalisisLexico_v2 {
                         case '\"':
                             estado = "N";
                             s.lexema = "\"";
+                            s.columna = columna;
+                            s.linea = linea;
                             break;
                         case ' ':
                             codigoHtml += "&nbsp;";
@@ -344,7 +346,8 @@ public class AnalisisLexico_v2 {
                         case '\"':
                             estado = "A";
                             s.lexema += "\"";
-                            codigoHtml += createHtml(s.lexema,"orange");
+                            codigoHtml += saveLexico(s,"cadena");
+                            //codigoHtml += createHtml(s.lexema,"orange");
                             s = new Simbolo();
                             columna = 0;
                             linea++;
@@ -410,6 +413,12 @@ public class AnalisisLexico_v2 {
             case "numero":
                 _s.token = "numero";
                 _s.expresionRegular = "D+";
+                html = createHtml(_s.lexema,"orange");
+                tablaLexico.add(_s);
+                break;
+            case "cadena":
+                _s.token = "cadena";
+                _s.expresionRegular = "[.]+";
                 html = createHtml(_s.lexema,"orange");
                 tablaLexico.add(_s);
                 break;
