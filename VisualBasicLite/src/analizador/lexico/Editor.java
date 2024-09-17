@@ -11,6 +11,8 @@ package analizador.lexico;
  * @author Carlos
  */
 public class Editor extends javax.swing.JFrame {
+    
+    int Solucion = 2;
 
     /**
      * Creates new form Editor
@@ -132,23 +134,44 @@ public class Editor extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AnalisisLexico_v2 analizador= new AnalisisLexico_v2();
-        String resultado = analizador.anlizar(jTextArea1.getText()+"\n");
-        jEditorPane1.setContentType("text/html");
-        jEditorPane1.setText(resultado);
-        String tablas;
-        
-        tablas = "----------ANALISIS SINTÁCTICO----------\n";
-        tablas += "Token\t\t\tER\t\t\tLexema\t\t\tLinea\t\t\tColumna\n";
-        tablas = analizador.tablaLexico.stream().map(
-                (s) -> s.token+"\t\t\t"+s.expresionRegular+"\t\t\t"+s.lexema+"\t\t\t"+s.linea+"\t\t\t"+s.columna+"\n")
-                .reduce(tablas, String::concat);
-        
-        tablas += "----------ERRORES LEXICOS----------\n";
-        tablas = analizador.errorLexico.stream().map(
-                (e) -> e+"\n").reduce(tablas, String::concat);
-        
-        jTextArea2.setText(tablas);
+        if (Solucion == 1){        
+            AnalisisLexico_v2 analizador= new AnalisisLexico_v2();
+            String resultado = analizador.anlizar(jTextArea1.getText()+"\n");
+            jEditorPane1.setContentType("text/html");
+            jEditorPane1.setText(resultado);
+            String tablas;
+
+            tablas = "----------ANALISIS SINTÁCTICO----------\n";
+            tablas += "Token\t\t\tER\t\t\tLexema\t\t\tLinea\t\t\tColumna\n";
+            tablas = analizador.tablaLexico.stream().map(
+                    (s) -> s.token+"\t\t\t"+s.expresionRegular+"\t\t\t"+s.lexema+"\t\t\t"+s.linea+"\t\t\t"+s.columna+"\n")
+                    .reduce(tablas, String::concat);
+
+            tablas += "----------ERRORES LEXICOS----------\n";
+            tablas = analizador.errorLexico.stream().map(
+                    (e) -> e+"\n").reduce(tablas, String::concat);
+
+            jTextArea2.setText(tablas);
+        }
+        if (Solucion == 2){
+            AnalisisLexico_v3 analizador= new AnalisisLexico_v3();
+            String resultado = analizador.lex(jTextArea1.getText()+"\n");
+            jEditorPane1.setContentType("text/html");
+            jEditorPane1.setText(resultado);
+            String tablas;
+
+            tablas = "----------ANALISIS SINTÁCTICO----------\n";
+            tablas += "Token\t\tER\t\t\t\tLexema\t\t\tLinea\t\t\tColumna\n";
+            tablas = analizador.tablaLexico.stream().map(
+                    (s) -> s.token+"\t\t"+(s.expresionRegular.length()<15?s.expresionRegular+"\t":s.expresionRegular)+"\t\t\t"+s.lexema+"\t\t\t"+s.linea+"\t\t\t"+s.columna+"\n")
+                    .reduce(tablas, String::concat);
+
+            tablas += "----------ERRORES LEXICOS----------\n";
+            tablas = analizador.errorLexico.stream().map(
+                    (e) -> e+"\n").reduce(tablas, String::concat);
+
+            jTextArea2.setText(tablas);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
