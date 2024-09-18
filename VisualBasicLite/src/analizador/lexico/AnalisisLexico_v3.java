@@ -98,7 +98,7 @@ public class AnalisisLexico_v3 {
                 s.token = tokenValue;
                 s.expresionRegular = tokenValue;
             }
-            if(tokenType.equals("Menorque") || tokenType.equals("Mayorque")){
+            if(tokenType.equals("Menorque") || tokenType.equals("Mayorque") || tokenType.equals("Menorigual") || tokenType.equals("Mayorigual")){
                 htmlValue = tdef.html;
             }
             if (tokenType.equals("MISMATCH")) {
