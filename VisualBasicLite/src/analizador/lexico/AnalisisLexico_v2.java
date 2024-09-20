@@ -379,8 +379,8 @@ public class AnalisisLexico_v2 {
         myList.add(new AllowedSimbols("=","=","=","igual","=","red"));
         myList.add(new AllowedSimbols(",",",",",","coma",",","purple"));
         myList.add(new AllowedSimbols(":",":",":","dos puntos",":","purple"));
-        myList.add(new AllowedSimbols(")",")",")","par. abre",")","purple"));
-        myList.add(new AllowedSimbols("(","(","(","par. cierra","(","purple"));
+        myList.add(new AllowedSimbols(")",")",")","par. cierra",")","purple"));
+        myList.add(new AllowedSimbols("(","(","(","par. abre","(","purple"));
        
         return myList;
     }
