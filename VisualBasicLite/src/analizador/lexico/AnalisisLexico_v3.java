@@ -129,7 +129,7 @@ public class AnalisisLexico_v3 {
                 return def;
             }
         }
-        throw new IllegalStateException("No matching token found");
+        throw new IllegalStateException("Token no encontrado");
     }
     
 }
