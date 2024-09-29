@@ -38,8 +38,9 @@ public class AnalisisLexico_v3 {
         new TokenDefinition("Cadena",       "\"[^\"]*\"","orange",""),          // Cadenas
         new TokenDefinition("Identificador","[A-Za-z_][A-Za-z0-9_]*","blue",""),// Identificadores
         new TokenDefinition("Igualigual",   "==","red","=="),                   // Operador de comparación
-        new TokenDefinition("Mayorigual",   ">=","red","&gt;="),                // Operador de comparación
+        new TokenDefinition("Mayorigual",   ">=","red","="),                // Operador de comparación
         new TokenDefinition("Menorigual",   "<=","red","&lt;="),                // Operador de comparación
+        new TokenDefinition("ArrowFunction","=>","#FFC0CB","=&gt;"),               // Operador de funcion
         new TokenDefinition("Igual",        "=","red","="),                     // Operador de asignación
         new TokenDefinition("Mayorque",     ">","Red","&gt;"),                  // Operador de comparación
         new TokenDefinition("Menorque",     "<","Red","&lt;"),                  // Operador de comparación
@@ -98,7 +99,12 @@ public class AnalisisLexico_v3 {
                 s.token = tokenValue;
                 s.expresionRegular = tokenValue;
             }
-            if(tokenType.equals("Menorque") || tokenType.equals("Mayorque") || tokenType.equals("Menorigual") || tokenType.equals("Mayorigual")){
+            if(tokenType.equals("Menorque") || 
+                    tokenType.equals("Mayorque") || 
+                    tokenType.equals("Menorigual") || 
+                    tokenType.equals("Mayorigual") ||
+                    tokenType.equals("ArrowFunction")
+                ){
                 htmlValue = tdef.html;
             }
             if (tokenType.equals("MISMATCH")) {
@@ -108,7 +114,7 @@ public class AnalisisLexico_v3 {
             }
             
             tablaLexico.add(s);
-            html += "<font style=\"font-size:15; color:"+tdef.color+";\">" + htmlValue + "</font>";
+            html += "<font style=\"font-size:20; color:"+tdef.color+";\">" + htmlValue + "</font>";
         }
 
         return html;
