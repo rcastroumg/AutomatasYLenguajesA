@@ -1,0 +1,28 @@
+
+package binariopara;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    @Override
+    public void syntax_error(Symbol s) {
+        System.out.println("Error en simbolo: "+s.value);
+    }
+:}
+
+action code {:
+    //AQUI VA CODIGO EN JAVA
+:}
+
+terminal String uno,numero;
+
+non terminal Integer I,N;
+
+start with I;
+
+I ::= I N
+    | uno;
+
+N ::= numero
+    | uno;
