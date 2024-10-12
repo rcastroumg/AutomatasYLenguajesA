@@ -1,0 +1,74 @@
+package arbolsintactico;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    String codigo;
+
+    @Override
+    public void syntax_error(Symbol s) {
+        System.out.println("Error en simbolo: "+s.value);
+    }
+:}
+
+action code {:
+    //AQUI VA CODIGO EN JAVA
+    int contador = 0;
+:}
+
+terminal String uno, cero;
+
+non terminal Nodo I,L,B;
+
+start with I;
+
+I ::= L:l {:
+    l.codigoGraphviz += "nodo"+contador+" [label=I];\n";
+    l.codigoGraphviz += "nodo"+contador+" -> "+l.codigoNodo+";\n";
+    parser.codigo = l.codigoGraphviz;
+:};
+
+L ::= B:b L:l {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = b.codigoGraphviz+l.codigoGraphviz;
+    n.codigoGraphviz += "nodo"+contador+" [label=L];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+b.codigoNodo+";\n";
+    n.codigoGraphviz += n.codigoNodo+" -> "+l.codigoNodo+";\n";
+    contador++;
+    RESULT = n;
+:}
+    | B:b {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = b.codigoGraphviz;
+    n.codigoGraphviz += "nodo"+contador+" [label=L];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+b.codigoNodo+";\n";
+    contador++;
+    RESULT = n;
+:};
+
+B ::= uno {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = "nodo"+contador+" [label=1];\n";
+    String temp = "nodo"+contador;
+    contador++;
+    n.codigoGraphviz += "nodo"+contador+" [label=B];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+temp+";\n";
+    contador++;
+    RESULT = n;
+:}
+    | cero {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = "nodo"+contador+" [label=0];\n";
+    String temp = "nodo"+contador;
+    contador++;
+    n.codigoGraphviz += "nodo"+contador+" [label=B];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+temp+";\n";
+    contador++;
+    RESULT = n;
+:};
+
