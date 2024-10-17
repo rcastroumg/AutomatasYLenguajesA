@@ -49,9 +49,9 @@ L ::= B:b L:l {:
     RESULT = n;
 :};
 
-B ::= uno {:
+B ::= uno:u {:
     Nodo n = new Nodo();
-    n.codigoGraphviz = "nodo"+contador+" [label=1];\n";
+    n.codigoGraphviz = "nodo"+contador+" [label="+u+"];\n";
     String temp = "nodo"+contador;
     contador++;
     n.codigoGraphviz += "nodo"+contador+" [label=B];\n";
@@ -60,9 +60,9 @@ B ::= uno {:
     contador++;
     RESULT = n;
 :}
-    | cero {:
+    | cero:c {:
     Nodo n = new Nodo();
-    n.codigoGraphviz = "nodo"+contador+" [label=0];\n";
+    n.codigoGraphviz = "nodo"+contador+" [label="+c+"];\n";
     String temp = "nodo"+contador;
     contador++;
     n.codigoGraphviz += "nodo"+contador+" [label=B];\n";

@@ -5,6 +5,8 @@
 package divisibleencinco;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.Scanner;
 
@@ -29,7 +31,38 @@ public class DivisibleEnCInco {
         
         try {
             sintactico.parse();
+            graficar(sintactico.codigo);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private static void graficar(String codigo) {
+        String texto = """
+                       digraph G{
+                       """;
+        texto += codigo + "\n}";
+        try {
+            escribirArchivo("archivo.dot",texto);
+            ProcessBuilder proceso= new ProcessBuilder("dot","-Tpng","-o","arbol.png","archivo.dot");
+            proceso.redirectErrorStream(true);
+            proceso.start();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private static void escribirArchivo(String ruta, String texto) {
+        FileWriter fw;
+        PrintWriter pw;
+        
+        try {
+            fw = new FileWriter(ruta);
+            pw = new PrintWriter(fw);
+            pw.write(texto);
+            pw.close();
+            fw.close();
+        }catch(Exception e) {
             e.printStackTrace();
         }
     }

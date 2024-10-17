@@ -154,6 +154,8 @@ class CUP$AnalisisSintactico$actions {
 		int lright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
 		Nodo l = (Nodo)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
 		
+    l.codigoGraphviz += "nodo"+contador+" [label=I];\n";
+    l.codigoGraphviz += "nodo"+contador+" -> "+l.codigoNodo+";\n";
     parser.codigo = l.codigoGraphviz;
 
               CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("I",0, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
@@ -208,9 +210,12 @@ class CUP$AnalisisSintactico$actions {
           case 4: // B ::= uno 
             {
               Nodo RESULT =null;
+		int uleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).left;
+		int uright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
+		String u = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
 		
     Nodo n = new Nodo();
-    n.codigoGraphviz = "nodo"+contador+" [label=1];\n";
+    n.codigoGraphviz = "nodo"+contador+" [label="+u+"];\n";
     String temp = "nodo"+contador;
     contador++;
     n.codigoGraphviz += "nodo"+contador+" [label=B];\n";
@@ -227,9 +232,12 @@ class CUP$AnalisisSintactico$actions {
           case 5: // B ::= cero 
             {
               Nodo RESULT =null;
+		int cleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
+		String c = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
 		
     Nodo n = new Nodo();
-    n.codigoGraphviz = "nodo"+contador+" [label=0];\n";
+    n.codigoGraphviz = "nodo"+contador+" [label="+c+"];\n";
     String temp = "nodo"+contador;
     contador++;
     n.codigoGraphviz += "nodo"+contador+" [label=B];\n";

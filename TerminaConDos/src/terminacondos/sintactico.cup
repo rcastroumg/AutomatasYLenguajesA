@@ -5,6 +5,8 @@ import java_cup.runtime.Symbol;
 
 parser code
 {:
+    String codigo;
+
     @Override
     public void syntax_error(Symbol s) {
         System.out.println("Error en simbolo: "+s.value);
@@ -13,17 +15,63 @@ parser code
 
 action code {:
     //AQUI VA CODIGO EN JAVA
+    int contador = 0;
 :}
 
 terminal String dos,numero;
 
-non terminal Integer I,N;
+non terminal Nodo L,I,N;
 
-start with I;
+start with L;
 
-I ::= N I
-    | dos;
+L ::= I:l {:
+    l.codigoGraphviz += "nodo"+contador+" [label=L];\n";
+    l.codigoGraphviz += "nodo"+contador+" -> "+l.codigoNodo+";\n";
+    parser.codigo = l.codigoGraphviz;
+:};
 
-N ::= numero
-    | dos;
+I ::= N:nn I:i {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = nn.codigoGraphviz+i.codigoGraphviz;
+    n.codigoGraphviz += "nodo"+contador+" [label=I];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+nn.codigoNodo+";\n";
+    n.codigoGraphviz += n.codigoNodo+" -> "+i.codigoNodo+";\n";
+    contador++;
+    RESULT = n;
+:}
+    | dos:d {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = "nodo"+contador+" [label="+d+"];\n";
+    String temp = "nodo"+contador;
+    contador++;
+    n.codigoGraphviz += "nodo"+contador+" [label=I];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+temp+";\n";
+    contador++;
+    RESULT = n;
+:};
+
+N ::= numero:num {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = "nodo"+contador+" [label="+num+"];\n";
+    String temp = "nodo"+contador;
+    contador++;
+    n.codigoGraphviz += "nodo"+contador+" [label=N];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+temp+";\n";
+    contador++;
+    RESULT = n;
+:}
+    | dos:d {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = "nodo"+contador+" [label="+d+"];\n";
+    String temp = "nodo"+contador;
+    contador++;
+    n.codigoGraphviz += "nodo"+contador+" [label=N];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+temp+";\n";
+    contador++;
+    RESULT = n;
+:};
 

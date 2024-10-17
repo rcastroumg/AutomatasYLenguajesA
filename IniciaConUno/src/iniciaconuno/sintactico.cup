@@ -1,10 +1,12 @@
 
-package binariopara;
+package iniciaconuno;
 
 import java_cup.runtime.Symbol;
 
 parser code
 {:
+    String codigo;
+
     @Override
     public void syntax_error(Symbol s) {
         System.out.println("Error en simbolo: "+s.value);
@@ -13,16 +15,62 @@ parser code
 
 action code {:
     //AQUI VA CODIGO EN JAVA
+    int contador = 0;
 :}
 
 terminal String uno,numero;
 
-non terminal Integer I,N;
+non terminal Nodo L,I,N;
 
-start with I;
+start with L;
 
-I ::= I N
-    | uno;
+L ::= I:l {:
+    l.codigoGraphviz += "nodo"+contador+" [label=L];\n";
+    l.codigoGraphviz += "nodo"+contador+" -> "+l.codigoNodo+";\n";
+    parser.codigo = l.codigoGraphviz;
+:};
 
-N ::= numero
-    | uno;
+I ::= I:i N:nn {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = i.codigoGraphviz+nn.codigoGraphviz;
+    n.codigoGraphviz += "nodo"+contador+" [label=I];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+i.codigoNodo+";\n";
+    n.codigoGraphviz += n.codigoNodo+" -> "+nn.codigoNodo+";\n";
+    contador++;
+    RESULT = n;
+:}
+    | uno:u {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = "nodo"+contador+" [label="+u+"];\n";
+    String temp = "nodo"+contador;
+    contador++;
+    n.codigoGraphviz += "nodo"+contador+" [label=I];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+temp+";\n";
+    contador++;
+    RESULT = n;
+:};
+
+N ::= numero:num {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = "nodo"+contador+" [label="+num+"];\n";
+    String temp = "nodo"+contador;
+    contador++;
+    n.codigoGraphviz += "nodo"+contador+" [label=N];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+temp+";\n";
+    contador++;
+    RESULT = n;
+:}
+    | uno:u {:
+    Nodo n = new Nodo();
+    n.codigoGraphviz = "nodo"+contador+" [label="+u+"];\n";
+    String temp = "nodo"+contador;
+    contador++;
+    n.codigoGraphviz += "nodo"+contador+" [label=N];\n";
+    n.codigoNodo = "nodo"+contador;
+    n.codigoGraphviz += n.codigoNodo+" -> "+temp+";\n";
+    contador++;
+    RESULT = n;
+:};

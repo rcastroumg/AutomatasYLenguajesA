@@ -1,4 +1,4 @@
-package binariopara;
+package iniciaconuno;
 
 import java_cup.runtime.Symbol;
 

@@ -1,0 +1,28 @@
+digraph G{
+nodo0 [label=1];
+nodo1 [label=B];
+nodo1 -> nodo0;
+nodo2 [label=0];
+nodo3 [label=B];
+nodo3 -> nodo2;
+nodo4 [label=1];
+nodo5 [label=B];
+nodo5 -> nodo4;
+nodo6 [label=0];
+nodo7 [label=B];
+nodo7 -> nodo6;
+nodo8 [label=L];
+nodo8 -> nodo7;
+nodo9 [label=L];
+nodo9 -> nodo5;
+nodo9 -> nodo8;
+nodo10 [label=L];
+nodo10 -> nodo3;
+nodo10 -> nodo9;
+nodo11 [label=L];
+nodo11 -> nodo1;
+nodo11 -> nodo10;
+nodo12 [label=I];
+nodo12 -> nodo11;
+
+}

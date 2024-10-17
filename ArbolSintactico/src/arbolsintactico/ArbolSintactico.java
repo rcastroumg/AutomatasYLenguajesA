@@ -39,11 +39,14 @@ public class ArbolSintactico {
     
     private static void graficar(String codigo) {
         String texto = """
-                       digraph G(
+                       digraph G{
                        """;
-        texto += codigo + "\n";
+        texto += codigo + "\n}";
         try {
             escribirArchivo("archivo.dot",texto);
+            ProcessBuilder proceso= new ProcessBuilder("dot","-Tpng","-o","arbol.png","archivo.dot");
+            proceso.redirectErrorStream(true);
+            proceso.start();
         } catch(Exception e) {
             e.printStackTrace();
         }
