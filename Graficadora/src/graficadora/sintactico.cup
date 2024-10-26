@@ -13,11 +13,14 @@ parser code
 
 action code {:
     //AQUI VA CODIGO EN JAVA
+    int contador = 0;
 :}
 
-terminal String cuadrado,parAbre,parCierra,entero,coma,pComa,rojo,azul,rellena,contorno;
+terminal String cuadrado,linea,rectangulo,circulo,ovalo,trianguloRectangulo,
+estrella,poligono,parAbre,parCierra,entero,coma,pComa,rojo,azul,celeste,
+verde,negro,morado,anaranjado,rosado,cafe,amarillo,gris,rellena,contorno;
 
-non terminal String I,L,O,C,T;
+non terminal String I,L,O,C,T,A,P;
 
 start with I;
 
@@ -29,6 +32,47 @@ L ::= L O
 O ::= cuadrado parAbre entero:x coma entero:y coma entero:l coma C:c coma T:t parCierra pComa {:
     //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
     Graficar.graficarCuadrado(x,y,l,c,t);
+:}
+    | linea parAbre entero:x1 coma entero:y1 coma entero:x2 coma entero:y2 coma C:c parCierra pComa {:
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarLinea(x1,y1,x2,y2,c);
+:}
+    | rectangulo parAbre entero:x coma entero:y coma entero:base coma entero:altura coma C:c coma T:t parCierra pComa {:
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarRectangulo(x,y,base,altura,c,t);
+:}
+    | circulo parAbre entero:x coma entero:y coma entero:radio coma C:c coma T:t parCierra pComa {:
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarCirculo(x,y,radio,c,t);
+:}
+    | ovalo parAbre entero:x coma entero:y coma entero:ejex coma entero:ejey coma C:c coma T:t parCierra pComa {:
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarOvalo(x,y,ejex,ejey,c,t);
+:}
+    | trianguloRectangulo parAbre entero:x coma entero:y coma entero:base coma entero:altura coma C:c coma T:t parCierra pComa {:
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarTrianguloRectangulo(x,y,base,altura,c,t);
+:}
+    | estrella parAbre entero:x coma entero:y coma entero:pct coma C:c coma T:t parCierra pComa {:
+    System.out.println("X: "+x+" , Y: "+y+" , PORCENTAJE: " + pct+" , COLOR: "+c+" , TIPO:: "+t);
+    //Graficar.graficarEstrella();
+:}
+    | poligono parAbre A:a coma C:c coma T:t parCierra pComa {:
+    System.out.println(a+" , COLOR: "+c+" , TIPO:: "+t);
+    //Graficar.graficarEstrella();
+:}
+;
+
+A ::= A:a coma P:p {:
+    RESULT = a+", "+p;
+:}
+    | P:p {:
+    RESULT = p;
+:};
+
+P ::= entero:x coma entero:y {:
+    contador ++;
+    RESULT = "X"+contador+":"+x + ", Y"+contador+":" + y;
 :};
 
 C ::= rojo:r {: RESULT = r; :}

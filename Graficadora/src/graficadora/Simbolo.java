@@ -8,22 +8,45 @@ package graficadora;
 /** CUP generated class containing symbol constants. */
 public class Simbolo {
   /* terminals */
-  public static final int coma = 6;
+  public static final int anaranjado = 21;
+  public static final int celeste = 17;
+  public static final int rojo = 15;
+  public static final int poligono = 9;
+  public static final int ovalo = 6;
+  public static final int morado = 20;
+  public static final int circulo = 5;
+  public static final int coma = 13;
+  public static final int negro = 19;
+  public static final int linea = 3;
+  public static final int rellena = 26;
+  public static final int azul = 16;
+  public static final int parAbre = 10;
+  public static final int contorno = 27;
+  public static final int pComa = 14;
   public static final int EOF = 0;
-  public static final int cuadrado = 2;
-  public static final int entero = 5;
-  public static final int rojo = 8;
+  public static final int estrella = 8;
+  public static final int parCierra = 11;
+  public static final int gris = 25;
   public static final int error = 1;
-  public static final int rellena = 10;
-  public static final int contorno = 11;
-  public static final int pComa = 7;
-  public static final int azul = 9;
-  public static final int parCierra = 4;
-  public static final int parAbre = 3;
+  public static final int cuadrado = 2;
+  public static final int trianguloRectangulo = 7;
+  public static final int verde = 18;
+  public static final int entero = 12;
+  public static final int rectangulo = 4;
+  public static final int amarillo = 24;
+  public static final int rosado = 22;
+  public static final int cafe = 23;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "cuadrado",
+  "linea",
+  "rectangulo",
+  "circulo",
+  "ovalo",
+  "trianguloRectangulo",
+  "estrella",
+  "poligono",
   "parAbre",
   "parCierra",
   "entero",
@@ -31,6 +54,15 @@ public class Simbolo {
   "pComa",
   "rojo",
   "azul",
+  "celeste",
+  "verde",
+  "negro",
+  "morado",
+  "anaranjado",
+  "rosado",
+  "cafe",
+  "amarillo",
+  "gris",
   "rellena",
   "contorno"
   };
