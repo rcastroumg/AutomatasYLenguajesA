@@ -1,0 +1,38 @@
+
+package graficadora;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    @Override
+    public void syntax_error(Symbol s) {
+        System.out.println("Error en simbolo: "+s.value);
+    }
+:}
+
+action code {:
+    //AQUI VA CODIGO EN JAVA
+:}
+
+terminal String cuadrado,parAbre,parCierra,entero,coma,pComa,rojo,azul,rellena,contorno;
+
+non terminal String I,L,O,C,T;
+
+start with I;
+
+I ::= L;
+
+L ::= L O
+    | O;
+
+O ::= cuadrado parAbre entero:x coma entero:y coma entero:l coma C:c coma T:t parCierra pComa {:
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarCuadrado(x,y,l,c,t);
+:};
+
+C ::= rojo:r {: RESULT = r; :}
+    | azul:a {: RESULT = a; :};
+
+T ::= rellena:r {: RESULT = r; :}
+    | contorno:c {: RESULT = c; :};
