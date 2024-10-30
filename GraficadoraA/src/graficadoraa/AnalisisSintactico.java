@@ -485,7 +485,7 @@ class CUP$AnalisisSintactico$actions {
 		int tright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
 		String t = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
 		
-    System.out.println("POLIGONO :: "+a+" , COLOR: "+c+" , TIPO:: "+t);
+    //System.out.println("POLIGONO :: "+a+" , COLOR: "+c+" , TIPO:: "+t);
     Graficar.graficarPoligono(a,c,t);
 
               CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("O",2, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);

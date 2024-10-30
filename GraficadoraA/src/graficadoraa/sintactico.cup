@@ -58,7 +58,7 @@ O ::= cuadrado parAbre entero:x coma entero:y coma entero:l coma color:c coma ti
     Graficar.graficarEstrella(x,y,pct,c,t);
 :}
     | poligono parAbre A:a coma color:c coma tipo:t parCierra pComa {:
-    System.out.println("POLIGONO :: "+a+" , COLOR: "+c+" , TIPO:: "+t);
+    //System.out.println("POLIGONO :: "+a+" , COLOR: "+c+" , TIPO:: "+t);
     Graficar.graficarPoligono(a,c,t);
 :}
 ;
