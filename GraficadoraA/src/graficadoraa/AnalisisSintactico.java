@@ -31,9 +31,11 @@ public class AnalisisSintactico extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\011\000\002\002\004\000\002\002\003\000\002\003" +
-    "\004\000\002\003\003\000\002\004\017\000\002\005\003" +
-    "\000\002\005\003\000\002\006\003\000\002\006\003" });
+    "\000\017\000\002\002\004\000\002\002\003\000\002\003" +
+    "\004\000\002\003\003\000\002\004\017\000\002\004\017" +
+    "\000\002\004\021\000\002\004\017\000\002\004\021\000" +
+    "\002\004\021\000\002\004\017\000\002\004\013\000\002" +
+    "\007\005\000\002\007\003\000\002\010\005" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -41,18 +43,75 @@ public class AnalisisSintactico extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\027\000\004\004\006\001\002\000\006\002\000\004" +
-    "\006\001\002\000\004\002\030\001\002\000\004\005\010" +
-    "\001\002\000\006\002\ufffe\004\ufffe\001\002\000\004\007" +
-    "\011\001\002\000\004\010\012\001\002\000\004\007\013" +
-    "\001\002\000\004\010\014\001\002\000\004\007\015\001" +
-    "\002\000\004\010\016\001\002\000\006\012\020\013\017" +
-    "\001\002\000\004\010\ufffb\001\002\000\004\010\ufffc\001" +
-    "\002\000\004\010\022\001\002\000\006\014\023\015\025" +
-    "\001\002\000\004\006\ufffa\001\002\000\004\006\026\001" +
-    "\002\000\004\006\ufff9\001\002\000\004\011\027\001\002" +
-    "\000\006\002\ufffd\004\ufffd\001\002\000\004\002\001\001" +
-    "\002\000\006\002\uffff\004\uffff\001\002" });
+    "\000\165\000\022\004\012\005\014\006\004\007\006\010" +
+    "\005\011\016\012\010\013\007\001\002\000\004\014\152" +
+    "\001\002\000\004\014\134\001\002\000\004\014\120\001" +
+    "\002\000\004\014\103\001\002\000\004\014\067\001\002" +
+    "\000\024\002\ufffe\004\ufffe\005\ufffe\006\ufffe\007\ufffe\010" +
+    "\ufffe\011\ufffe\012\ufffe\013\ufffe\001\002\000\004\014\053" +
+    "\001\002\000\024\002\000\004\012\005\014\006\004\007" +
+    "\006\010\005\011\016\012\010\013\007\001\002\000\004" +
+    "\014\036\001\002\000\004\002\035\001\002\000\004\014" +
+    "\017\001\002\000\004\016\020\001\002\000\004\017\021" +
+    "\001\002\000\004\016\022\001\002\000\004\017\023\001" +
+    "\002\000\004\016\024\001\002\000\004\017\025\001\002" +
+    "\000\004\016\026\001\002\000\004\017\027\001\002\000" +
+    "\004\021\030\001\002\000\004\017\031\001\002\000\004" +
+    "\022\032\001\002\000\004\015\033\001\002\000\004\020" +
+    "\034\001\002\000\024\002\ufff8\004\ufff8\005\ufff8\006\ufff8" +
+    "\007\ufff8\010\ufff8\011\ufff8\012\ufff8\013\ufff8\001\002\000" +
+    "\004\002\001\001\002\000\004\016\037\001\002\000\004" +
+    "\017\040\001\002\000\004\016\041\001\002\000\004\017" +
+    "\042\001\002\000\004\016\043\001\002\000\004\017\044" +
+    "\001\002\000\004\016\045\001\002\000\004\017\046\001" +
+    "\002\000\004\021\047\001\002\000\004\015\050\001\002" +
+    "\000\004\020\051\001\002\000\024\002\ufffc\004\ufffc\005" +
+    "\ufffc\006\ufffc\007\ufffc\010\ufffc\011\ufffc\012\ufffc\013\ufffc" +
+    "\001\002\000\024\002\uffff\004\uffff\005\uffff\006\uffff\007" +
+    "\uffff\010\uffff\011\uffff\012\uffff\013\uffff\001\002\000\004" +
+    "\016\054\001\002\000\004\017\055\001\002\000\004\016" +
+    "\056\001\002\000\004\017\057\001\002\000\004\016\060" +
+    "\001\002\000\004\017\061\001\002\000\004\021\062\001" +
+    "\002\000\004\017\063\001\002\000\004\022\064\001\002" +
+    "\000\004\015\065\001\002\000\004\020\066\001\002\000" +
+    "\024\002\ufffd\004\ufffd\005\ufffd\006\ufffd\007\ufffd\010\ufffd" +
+    "\011\ufffd\012\ufffd\013\ufffd\001\002\000\004\016\070\001" +
+    "\002\000\004\017\071\001\002\000\004\016\072\001\002" +
+    "\000\004\017\073\001\002\000\004\016\074\001\002\000" +
+    "\004\017\075\001\002\000\004\021\076\001\002\000\004" +
+    "\017\077\001\002\000\004\022\100\001\002\000\004\015" +
+    "\101\001\002\000\004\020\102\001\002\000\024\002\ufff7" +
+    "\004\ufff7\005\ufff7\006\ufff7\007\ufff7\010\ufff7\011\ufff7\012" +
+    "\ufff7\013\ufff7\001\002\000\004\016\105\001\002\000\004" +
+    "\017\111\001\002\000\004\017\107\001\002\000\004\017" +
+    "\ufff4\001\002\000\004\016\110\001\002\000\004\017\ufff3" +
+    "\001\002\000\006\016\105\021\112\001\002\000\004\017" +
+    "\114\001\002\000\004\017\ufff5\001\002\000\004\022\115" +
+    "\001\002\000\004\015\116\001\002\000\004\020\117\001" +
+    "\002\000\024\002\ufff6\004\ufff6\005\ufff6\006\ufff6\007\ufff6" +
+    "\010\ufff6\011\ufff6\012\ufff6\013\ufff6\001\002\000\004\016" +
+    "\121\001\002\000\004\017\122\001\002\000\004\016\123" +
+    "\001\002\000\004\017\124\001\002\000\004\016\125\001" +
+    "\002\000\004\017\126\001\002\000\004\021\127\001\002" +
+    "\000\004\017\130\001\002\000\004\022\131\001\002\000" +
+    "\004\015\132\001\002\000\004\020\133\001\002\000\024" +
+    "\002\ufffa\004\ufffa\005\ufffa\006\ufffa\007\ufffa\010\ufffa\011" +
+    "\ufffa\012\ufffa\013\ufffa\001\002\000\004\016\135\001\002" +
+    "\000\004\017\136\001\002\000\004\016\137\001\002\000" +
+    "\004\017\140\001\002\000\004\016\141\001\002\000\004" +
+    "\017\142\001\002\000\004\016\143\001\002\000\004\017" +
+    "\144\001\002\000\004\021\145\001\002\000\004\017\146" +
+    "\001\002\000\004\022\147\001\002\000\004\015\150\001" +
+    "\002\000\004\020\151\001\002\000\024\002\ufff9\004\ufff9" +
+    "\005\ufff9\006\ufff9\007\ufff9\010\ufff9\011\ufff9\012\ufff9\013" +
+    "\ufff9\001\002\000\004\016\153\001\002\000\004\017\154" +
+    "\001\002\000\004\016\155\001\002\000\004\017\156\001" +
+    "\002\000\004\016\157\001\002\000\004\017\160\001\002" +
+    "\000\004\016\161\001\002\000\004\017\162\001\002\000" +
+    "\004\021\163\001\002\000\004\017\164\001\002\000\004" +
+    "\022\165\001\002\000\004\015\166\001\002\000\004\020" +
+    "\167\001\002\000\024\002\ufffb\004\ufffb\005\ufffb\006\ufffb" +
+    "\007\ufffb\010\ufffb\011\ufffb\012\ufffb\013\ufffb\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -60,15 +119,44 @@ public class AnalisisSintactico extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\027\000\010\002\004\003\003\004\006\001\001\000" +
-    "\004\004\030\001\001\000\002\001\001\000\002\001\001" +
+    "\000\165\000\010\002\014\003\012\004\010\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\004\051\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\004\005\020\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\004\006\023\001\001" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001" });
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\006\007\103\010\105\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\010\112\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -121,7 +209,7 @@ public class AnalisisSintactico extends java_cup.runtime.lr_parser {
 class CUP$AnalisisSintactico$actions {
 
 
-    
+    int contador = 0;
 
   private final AnalisisSintactico parser;
 
@@ -186,7 +274,7 @@ class CUP$AnalisisSintactico$actions {
           return CUP$AnalisisSintactico$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // O ::= cuadrado parAbre entero coma entero coma entero coma C coma T parCierra pComa 
+          case 4: // O ::= cuadrado parAbre entero coma entero coma entero coma color coma tipo parCierra pComa 
             {
               String RESULT =null;
 		int xleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).left;
@@ -205,7 +293,7 @@ class CUP$AnalisisSintactico$actions {
 		int tright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
 		String t = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
 		
-    //System.out.println("X: "+x +" , Y: "+y +" , LADO:" + l +" , Color: "+ c +" , TIPO: "+t);
+    System.out.println("X: "+x +" , Y: "+y +" , LADO:" + l +" , Color: "+ c +" , TIPO: "+t);
     Graficar.graficarCuadrado(x,y,l,c,t);
 
               CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("O",2, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
@@ -213,50 +301,243 @@ class CUP$AnalisisSintactico$actions {
           return CUP$AnalisisSintactico$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // C ::= rojo 
+          case 5: // O ::= linea parAbre entero coma entero coma entero coma entero coma color parCierra pComa 
             {
               String RESULT =null;
-		int rleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).left;
-		int rright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
-		String r = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
-		 RESULT = r; 
-              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("C",3, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+		int x1left = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).left;
+		int x1right = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).right;
+		String x1 = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).value;
+		int y1left = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).left;
+		int y1right = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).right;
+		String y1 = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).value;
+		int x2left = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).left;
+		int x2right = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).right;
+		String x2 = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).value;
+		int y2left = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).left;
+		int y2right = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).right;
+		String y2 = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
+		String c = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
+		
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarLinea(x1,y1,x2,y2,c);
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("O",2, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
             }
           return CUP$AnalisisSintactico$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // C ::= azul 
+          case 6: // O ::= rectangulo parAbre entero coma entero coma entero coma entero coma color coma tipo parCierra pComa 
             {
               String RESULT =null;
-		int aleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).left;
-		int aright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
-		String a = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
-		 RESULT = a; 
-              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("C",3, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+		int xleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)).left;
+		int xright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)).right;
+		String x = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)).value;
+		int yleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).left;
+		int yright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).right;
+		String y = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).value;
+		int baseleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).left;
+		int baseright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).right;
+		String base = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).value;
+		int alturaleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).left;
+		int alturaright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).right;
+		String altura = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).right;
+		String c = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).value;
+		int tleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
+		String t = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
+		
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarRectangulo(x,y,base,altura,c,t);
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("O",2, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-14)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
             }
           return CUP$AnalisisSintactico$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // T ::= rellena 
+          case 7: // O ::= circulo parAbre entero coma entero coma entero coma color coma tipo parCierra pComa 
             {
               String RESULT =null;
-		int rleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).left;
-		int rright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
-		String r = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
-		 RESULT = r; 
-              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("T",4, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+		int xleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).left;
+		int xright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).right;
+		String x = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).value;
+		int yleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).left;
+		int yright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).right;
+		String y = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).value;
+		int radioleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).left;
+		int radioright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).right;
+		String radio = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).right;
+		String c = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).value;
+		int tleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
+		String t = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
+		
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarCirculo(x,y,radio,c,t);
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("O",2, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
             }
           return CUP$AnalisisSintactico$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // T ::= contorno 
+          case 8: // O ::= ovalo parAbre entero coma entero coma entero coma entero coma color coma tipo parCierra pComa 
             {
               String RESULT =null;
-		int cleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).left;
-		int cright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
-		String c = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
-		 RESULT = c; 
-              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("T",4, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+		int xleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)).left;
+		int xright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)).right;
+		String x = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)).value;
+		int yleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).left;
+		int yright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).right;
+		String y = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).value;
+		int ejexleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).left;
+		int ejexright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).right;
+		String ejex = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).value;
+		int ejeyleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).left;
+		int ejeyright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).right;
+		String ejey = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).right;
+		String c = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).value;
+		int tleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
+		String t = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
+		
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarOvalo(x,y,ejex,ejey,c,t);
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("O",2, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-14)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+            }
+          return CUP$AnalisisSintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // O ::= trianguloRectangulo parAbre entero coma entero coma entero coma entero coma color coma tipo parCierra pComa 
+            {
+              String RESULT =null;
+		int xleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)).left;
+		int xright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)).right;
+		String x = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)).value;
+		int yleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).left;
+		int yright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).right;
+		String y = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).value;
+		int baseleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).left;
+		int baseright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).right;
+		String base = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).value;
+		int alturaleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).left;
+		int alturaright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).right;
+		String altura = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).right;
+		String c = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).value;
+		int tleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
+		String t = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
+		
+    //System.out.println("X: "+x+" , Y: "+y+" , LADO: "+l+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarTrianguloRectangulo(x,y,base,altura,c,t);
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("O",2, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-14)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+            }
+          return CUP$AnalisisSintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 10: // O ::= estrella parAbre entero coma entero coma entero coma color coma tipo parCierra pComa 
+            {
+              String RESULT =null;
+		int xleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).left;
+		int xright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).right;
+		String x = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-10)).value;
+		int yleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).left;
+		int yright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).right;
+		String y = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)).value;
+		int pctleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).left;
+		int pctright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).right;
+		String pct = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).right;
+		String c = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).value;
+		int tleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
+		String t = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
+		
+    //System.out.println("ESTRELLA :: X: "+x+" , Y: "+y+" , PORCENTAJE: " + pct+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarEstrella(x,y,pct,c,t);
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("O",2, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-12)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+            }
+          return CUP$AnalisisSintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // O ::= poligono parAbre A coma color coma tipo parCierra pComa 
+            {
+              String RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-6)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).right;
+		String c = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-4)).value;
+		int tleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
+		String t = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
+		
+    System.out.println("POLIGONO :: "+a+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarPoligono(a,c,t);
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("O",2, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-8)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+            }
+          return CUP$AnalisisSintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // A ::= A coma P 
+            {
+              String RESULT =null;
+		int aleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
+		String p = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
+		
+    RESULT = a+","+p;
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("A",5, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+            }
+          return CUP$AnalisisSintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // A ::= P 
+            {
+              String RESULT =null;
+		int pleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
+		String p = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
+		
+    RESULT = p;
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("A",5, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
+            }
+          return CUP$AnalisisSintactico$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 14: // P ::= entero coma entero 
+            {
+              String RESULT =null;
+		int xleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).left;
+		int xright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).right;
+		String x = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)).value;
+		int yleft = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).left;
+		int yright = ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()).right;
+		String y = (String)((java_cup.runtime.Symbol) CUP$AnalisisSintactico$stack.peek()).value;
+		
+    contador ++;
+    RESULT = x + ";" + y;
+
+              CUP$AnalisisSintactico$result = parser.getSymbolFactory().newSymbol("P",6, ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.elementAt(CUP$AnalisisSintactico$top-2)), ((java_cup.runtime.Symbol)CUP$AnalisisSintactico$stack.peek()), RESULT);
             }
           return CUP$AnalisisSintactico$result;
 

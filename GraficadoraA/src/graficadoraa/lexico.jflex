@@ -25,8 +25,29 @@ import java_cup.runtime.Symbol;
 <YYINITIAL>{
 
 
-    "cuadrado" {
+    "cuadrado" { 
         return new Symbol(Simbolo.cuadrado,yytext());
+    }
+    "linea" { 
+        return new Symbol(Simbolo.linea,yytext());
+    }
+    "rectangulo" { 
+        return new Symbol(Simbolo.rectangulo,yytext());
+    }
+    "circulo" { 
+        return new Symbol(Simbolo.circulo,yytext());
+    }
+    "ovalo" { 
+        return new Symbol(Simbolo.ovalo,yytext());
+    }
+    "trianguloRectangulo" { 
+        return new Symbol(Simbolo.trianguloRectangulo,yytext());
+    }
+    "estrella" { 
+        return new Symbol(Simbolo.estrella,yytext());
+    }
+    "poligono" { 
+        return new Symbol(Simbolo.poligono,yytext());
     }
     
     "(" {
@@ -49,20 +70,13 @@ import java_cup.runtime.Symbol;
         return new Symbol(Simbolo.pComa,yytext());
     }
 
-    "rojo" {
-        return new Symbol(Simbolo.rojo,yytext());
+    ( "azul" | "rojo" | "verde" | "celeste" | "negro" | "morado" | "anaranjado" | "rosado" | "cafe" | "amarillo" | "gris" ) {
+        return new Symbol(Simbolo.color,yytext());
     }
 
-    "azul" {
-        return new Symbol(Simbolo.azul,yytext());
-    }
 
-    "rellena" {
-        return new Symbol(Simbolo.rellena,yytext());
-    }
-
-    "contorno" {
-        return new Symbol(Simbolo.contorno,yytext());
+    ( "rellena" | "contorno" ) {
+        return new Symbol(Simbolo.tipo,yytext());
     }
 
 

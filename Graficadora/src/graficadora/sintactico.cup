@@ -54,12 +54,10 @@ O ::= cuadrado parAbre entero:x coma entero:y coma entero:l coma C:c coma T:t pa
     Graficar.graficarTrianguloRectangulo(x,y,base,altura,c,t);
 :}
     | estrella parAbre entero:x coma entero:y coma entero:pct coma C:c coma T:t parCierra pComa {:
-    System.out.println("X: "+x+" , Y: "+y+" , PORCENTAJE: " + pct+" , COLOR: "+c+" , TIPO:: "+t);
-    //Graficar.graficarEstrella();
+    System.out.println("ESTRELLA :: X: "+x+" , Y: "+y+" , PORCENTAJE: " + pct+" , COLOR: "+c+" , TIPO:: "+t);
 :}
     | poligono parAbre A:a coma C:c coma T:t parCierra pComa {:
-    System.out.println(a+" , COLOR: "+c+" , TIPO:: "+t);
-    //Graficar.graficarEstrella();
+    System.out.println("POLIGONO :: "+a+" , COLOR: "+c+" , TIPO:: "+t);
 :}
 ;
 
@@ -75,8 +73,17 @@ P ::= entero:x coma entero:y {:
     RESULT = "X"+contador+":"+x + ", Y"+contador+":" + y;
 :};
 
-C ::= rojo:r {: RESULT = r; :}
-    | azul:a {: RESULT = a; :};
+C ::= rojo:c {: RESULT = c; :}
+    | azul:c {: RESULT = c; :}
+    | celeste:c {: RESULT = c; :}
+    | verde:c {: RESULT = c; :}
+    | negro:c {: RESULT = c; :}
+    | morado:c {: RESULT = c; :}
+    | anaranjado:c {: RESULT = c; :}
+    | rosado:c {: RESULT = c; :}
+    | cafe:c {: RESULT = c; :}
+    | amarillo:c {: RESULT = c; :}
+    | gris:c {: RESULT = c; :};
 
 T ::= rellena:r {: RESULT = r; :}
     | contorno:c {: RESULT = c; :};
