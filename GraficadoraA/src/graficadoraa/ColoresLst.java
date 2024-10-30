@@ -26,10 +26,10 @@ public class ColoresLst {
         myList.add(new Colores("verde","#00FF00",java.awt.Color.black));
         myList.add(new Colores("celeste","#00FFDD",java.awt.Color.black));
         myList.add(new Colores("negro","#000000",java.awt.Color.black));
-        myList.add(new Colores("morado","#700094",java.awt.Color.black));
+        myList.add(new Colores("morado","#8B11E9",java.awt.Color.black));
         myList.add(new Colores("anaranjado","#EF5100",java.awt.Color.black));
         myList.add(new Colores("rosado","#EA89C9",java.awt.Color.black));
-        myList.add(new Colores("cafe","#623307",java.awt.Color.black));
+        myList.add(new Colores("cafe","#A1603C",java.awt.Color.black));
         myList.add(new Colores("amarillo","#FFD300",java.awt.Color.black));
         myList.add(new Colores("gris","#9B9B9B",java.awt.Color.black));
        
