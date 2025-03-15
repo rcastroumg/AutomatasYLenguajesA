@@ -319,6 +319,49 @@ public class Graficar {
         }
     }
     
+    public static void graficarPie(String xs, String ys, String tamano, String color, String tipo) {
+        int x = Integer.parseInt(xs);
+        int y = Integer.parseInt(ys);
+        int size = 0;
+        
+        Graphics g = Interfaz.jPanel1.getGraphics();
+        
+        ColoresLst c = new ColoresLst();
+        Colores mycolor = c.findColor(color);
+        if(mycolor != null){
+            if(!"".equals(mycolor.colorHex)){
+                g.setColor(Color.decode(mycolor.colorHex));
+            }
+            else{
+                g.setColor(mycolor.colorName);
+            }
+        }
+        else{
+            g.setColor(Color.black);
+        }
+        
+        switch(tamano){
+            case "S":
+                size = 40;
+                break;
+            case "M":
+                size = 180;
+                break;
+            case "L":
+                size = 350;
+                break;
+        }
+         
+        
+        if("rellena".equals(tipo)){
+            g.fillArc(x-(size/2),y-(size/2),size,size,0,45);
+            
+        }
+        else {
+            g.drawArc(x-(size/2),y-(size/2),size,size,0,45);
+        }
+    }
+    
     public static void graficarEstrella2() {
         int max = 10;
         int midX = 0;

@@ -18,7 +18,7 @@ action code {:
 :}
 
 terminal String cuadrado,linea,rectangulo,circulo,ovalo,trianguloRectangulo,
-estrella,poligono,parAbre,parCierra,entero,coma,pComa,color,tipo;
+estrella,poligono,pie,parAbre,parCierra,entero,tamano,coma,pComa,color,tipo;
 
 non terminal String I,L,O,C,T,A,P; 
 
@@ -60,6 +60,10 @@ O ::= cuadrado parAbre entero:x coma entero:y coma entero:l coma color:c coma ti
     | poligono parAbre A:a coma color:c coma tipo:t parCierra pComa {:
     //System.out.println("POLIGONO :: "+a+" , COLOR: "+c+" , TIPO:: "+t);
     Graficar.graficarPoligono(a,c,t);
+:}
+    | pie parAbre entero:x coma entero:y coma tamano:s coma color:c coma tipo:t parCierra pComa {:
+    //System.out.println("POLIGONO :: "+a+" , COLOR: "+c+" , TIPO:: "+t);
+    Graficar.graficarPie(x,y,s,c,t);
 :}
 ;
 

@@ -49,6 +49,9 @@ import java_cup.runtime.Symbol;
     "poligono" { 
         return new Symbol(Simbolo.poligono,yytext());
     }
+    "pie" {
+        return new Symbol(Simbolo.pie,yytext());
+    }
     
     "(" {
         return new Symbol(Simbolo.parAbre,yytext());
@@ -79,6 +82,9 @@ import java_cup.runtime.Symbol;
         return new Symbol(Simbolo.tipo,yytext());
     }
 
+    ( "S" | "M" | "L" ) {
+        return new Symbol(Simbolo.tamano,yytext());
+    }
 
     (" " | \r | \n | \t | \f)+ {}
     
